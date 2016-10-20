@@ -34,7 +34,11 @@
                                     <constraint firstItem="gNe-Kz-RVc" firstAttribute="centerX" secondItem="tne-Wc-2Ra" secondAttribute="centerX" id="9dV-Ag-jwu"/>
                                 </constraints>
                             </view>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hqg-RL-roi"/>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hqg-RL-roi">
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="hyj-NK-csw"/>
+                                </connections>
+                            </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z9t-CE-N2h">
                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="46"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -78,6 +82,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="pickerView" destination="Hqg-RL-roi" id="npN-Fi-uE8"/>
                         <outlet property="resultLabel" destination="z9t-CE-N2h" id="jR8-KO-Jss"/>
                         <outlet property="spinButton" destination="OrZ-qi-3Ge" id="j09-Jd-I6p"/>
                     </connections>
