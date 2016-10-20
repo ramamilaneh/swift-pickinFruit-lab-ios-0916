@@ -82,7 +82,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="pickerView" destination="Hqg-RL-roi" id="npN-Fi-uE8"/>
+                        <outlet property="fruitPicker" destination="Hqg-RL-roi" id="3Xl-fd-jn9"/>
                         <outlet property="resultLabel" destination="z9t-CE-N2h" id="jR8-KO-Jss"/>
                         <outlet property="spinButton" destination="OrZ-qi-3Ge" id="j09-Jd-I6p"/>
                     </connections>

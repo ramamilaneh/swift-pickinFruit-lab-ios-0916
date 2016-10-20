@@ -12,7 +12,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     @IBOutlet weak var spinButton: UIButton!
     @IBOutlet weak var resultLabel: UILabel!
-    @IBOutlet weak var pickerView: UIPickerView!
+    @IBOutlet weak var fruitPicker: UIPickerView!
     
     
     var fruitsArray = ["🍎", "🍊", "🍌", "🍐", "🍇", "🍉", "🍓", "🍒", "🍍"]
@@ -21,8 +21,12 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         super.viewDidLoad()
         
         self.spinButton.accessibilityLabel = Constants.SPIN_BUTTON
-        self.pickerView.delegate = self
-        
+        self.fruitPicker.delegate = self
+        self.fruitPicker.dataSource = self
+        for component in 0..<self.fruitPicker.numberOfComponents {
+            let row = Int(arc4random_uniform(UInt32(390))+10)
+            self.fruitPicker.selectRow(row, inComponent: component, animated: true)
+        }
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -42,12 +46,12 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     @IBAction func spinButtonTapped(_ sender: UIButton) {
         self.resultLabel.alpha = 1
-        var resultArray = [Int]()
-        for component in 0..<pickerView.numberOfComponents {
-            let row = Int(arc4random_uniform(UInt32(fruitsArray.count)))
-            pickerView.selectRow(row, inComponent: component, animated: true)
-            resultArray.append(pickerView.selectedRow(inComponent: component))
-            
+        var resultArray = [String]()
+        for component in 0..<fruitPicker.numberOfComponents {
+            let row = Int(arc4random_uniform(UInt32(400)))
+            fruitPicker.selectRow(row, inComponent: component, animated: true)
+            resultArray.append(fruitsArray[row%fruitsArray.count])
+           
         }
         if resultArray[0] == resultArray[1] && resultArray[1] == resultArray[2] {
             
@@ -61,18 +65,11 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     func animateTheLabel() {
-        UIView.animateKeyframes(withDuration: 0.8, delay: 0.0, options: [.allowUserInteraction], animations: {
-            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1/2, animations: {
-                self.resultLabel.alpha = 0
-            })
-            UIView.addKeyframe(withRelativeStartTime: 1/2, relativeDuration: 1/2, animations: {
-                self.resultLabel.alpha = 1
-            })
-            }) { (success) in
-                self.resultLabel.alpha = 0
-        }
-        
-            }
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: [.repeat,.autoreverse], animations: {
+        UIView.setAnimationRepeatCount(6)
+            self.resultLabel.alpha = 0
+        })
+    }
     
 }
 
